@@ -1,0 +1,179 @@
+<div class="container-fluid">
+	<div class="row">
+        <div class="col-lg-12">
+			<h1 class="page-header"><?php echo $data['subtitle']; ?></h1>
+
+            <!--<p>More examples can be found over in the <a target="_blank" href="<?php //echo $this->baseUrl(); ?>assets/examples/">Examples</a> folder brought in from the SB Admin 2 template.</p>-->
+        </div>
+        <!-- /.col-lg-12 -->
+
+    </div>
+	<!-- /.row -->
+
+	<div class="row">
+		<div class="col-lg-7">
+			<form class="form-horizontal" action="<?php echo $this->baseUrl(); ?>add-resource" method="GET" data-toggle="validator">
+                <fieldset>
+                    <div class="form-group">
+                    	<label for="resource_name" class="col-sm-2 control-label">Name</label>
+              					<div class="col-sm-10">
+	                        <input required class="form-control" placeholder="Resource Name" id="resource_name" name="resource_name" type="text" value="<?php echo $this->escape($data['parameters']['resource_name']); ?>" pattern="[A-Za-z0-9~`!@#\$%\^&\*\(\)_\+-=\{|\}\[\]\|\\:;\',<\.>\?/][A-Za-z0-9~`!@#\$%\^&\*\(\)_\+-=\{|\}\[\]\|\\:;\',<\.>\?/ ]{1,49}" data-pattern-error="Name does not meet format requirements" autofocus>
+              					<div class="help-block with-errors"></div>
+                				</div>
+                    </div>
+
+                    <div class="form-group">
+                    	<label for="resource_primary_esf" class="col-sm-2 control-label">Primary ESF</label>
+    					<div class="col-sm-10">
+	                        <?php echo $data['model']->getPrimaryEsfsDropdown($data['parameters']['resource_primary_esf']); ?>
+          					<div class="help-block with-errors"></div>
+          				</div>
+                    </div>
+
+                    <div class="form-group">
+                    	<label for="resource_additional_esfs" class="col-sm-2 control-label">Additional ESFs</label>
+                    	<!-- <div > -->
+    					<div class="col-sm-10">
+	                        <?php echo $data['model']->getAdditionalEsfsDropdown($data['parameters']['resource_additional_esfs']); ?>
+          					<div class="help-block with-errors"></div>
+          				</div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="resource_model" class="col-sm-2 control-label">Model</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" placeholder="Resource Model" id="resource_model" name="resource_model" type="text" value="<?php echo $this->escape($data['parameters']['resource_model']); ?>" pattern="[A-Za-z0-9~`!@#\$%\^&\*\(\)_\+-=\{|\}\[\]\|\\:;\',<\.>\?/][A-Za-z0-9~`!@#\$%\^&\*\(\)_\+-=\{|\}\[\]\|\\:;\',<\.>\?/ ]{1,49}" data-pattern-error="Model does not meet format requirements" >
+                        <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group">
+                      <label for="resource_latitude" class="col-sm-2 control-label">Location</label>
+                        <div class="col-sm-5">
+                          <input class="form-control" placeholder="Latitude" name="resource_latitude" type="text" value="<?php //echo $data['parameters']['resource_latitude']; ?>" pattern="^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$" data-pattern-error="Invalid Latitude">
+                          <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-sm-5">
+                          <input class="form-control" placeholder="Longitude" name="resource_longitude" type="text" value="<?php //echo $data['parameters']['resource_longitude']; ?>" pattern="^\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$" data-pattern-error="Invalid Longitude">
+                          <div class="help-block with-errors"></div>
+                        </div>
+
+                    </div> -->
+
+                    <div class="form-group">
+                      <label for="resource_latitude" class="col-sm-2 control-label">Latitude</label>
+                        <div class="col-sm-10">
+                          <input required class="form-control" placeholder="Latitude" id="resource_latitude" name="resource_latitude" type="text" value="<?php echo $this->escape($data['parameters']['resource_latitude']); ?>" pattern="^[-+]?([1-8]?\d(\.\d{1,7})?|90(\.0{1,7})?)$" data-pattern-error="Latitude must be between -90.0 and 90.0">
+                          <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="resource_latitude" class="col-sm-2 control-label">Longitude</label>
+                        <div class="col-sm-10">
+                          <input required class="form-control" placeholder="Longitude" id="resource_longitude" name="resource_longitude" type="text" value="<?php echo $this->escape($data['parameters']['resource_longitude']); ?>" pattern="^\s*[-+]?(180(\.0{1,7})?|((1[0-7]\d)|([1-9]?\d))(\.\d{1,7})?)$" data-pattern-error="Longitude must be between -180.0 and 180.0">
+                          <div class="help-block with-errors"></div>
+                        </div>
+
+                        <!-- </div> -->
+                    </div>
+
+                    <!-- <div class="form-group">
+                      <label for="resource_longitude" class="col-sm-2 control-label">Longitude</label>
+                        <div class="col-sm-10">
+                          <input class="form-control" placeholder="Longitude" name="resource_longitude" type="text" value="<?php //echo $data['parameters']['resource_longitude']; ?>" pattern="[A-Za-z0-9-_.]{2,50}" data-pattern-error="Search keyword does not meet format requirements" >
+                        <div class="help-block with-errors"></div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="form-group">
+                      <label for="resource_cost" class="col-sm-2 control-label">Cost</label>
+                      <div class="col-sm-5">
+                        <span>$</span>
+                        <input required class="form-control" placeholder="Amount" name="resource_cost_amount" type="text" style="display: inline-block; width:94% !important;" value="<?php //echo $data['parameters']['resource_cost_amount']; ?>" pattern="[0-9]{1,11}" data-pattern-error="Postive integer. Max 11 digits.">
+                          <div class="help-block with-errors"></div>
+                      </div>
+                      <div class="col-sm-5">
+                        <span>per</span>
+                        <div style="display: inline-block;">
+                          <?php //echo $data['model']->getCostIntervalsDropdown($data['parameters']['resource_cost_interval']); ?>
+                          </div>
+                        <div class="help-block with-errors"></div>
+                      </div>
+                    </div> -->
+
+                    <div class="form-group">
+                      <label for="resource_cost_amount" class="col-sm-2 control-label">Cost</label>
+                      <div class="col-sm-5">
+                        <span>$</span>
+                        <input required class="form-control" placeholder="Amount" id="resource_cost_amount" name="resource_cost_amount" type="text" style="display: inline-block; width:94% !important;" value="<?php echo $this->escape($data['parameters']['resource_cost_amount']); ?>" pattern="[0-9]{1,11}" data-pattern-error="Postive integer. Max 11 digits.">
+                          <div class="help-block with-errors"></div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="resource_cost_interval" class="col-sm-2 control-label"></label>
+                      <div class="col-sm-5">
+                        <span>per</span>
+                        <div style="display: inline-block;">
+                          <?php echo $data['model']->getCostIntervalsDropdown($data['parameters']['resource_cost_interval']); ?>
+                          </div>
+                        <div class="help-block with-errors"></div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="resource_capability" class="col-sm-2 control-label">Capabilities</label>
+                        <div class="col-sm-8">
+                          <input class="form-control" placeholder="Resource Capability" id="resource_capability" name="resource_capability" type="text" value="<?php echo $this->escape($data['parameters']['resource_capability']); ?>" pattern="[A-Za-z0-9~`!@#\$%\^&\*\(\)_\+-=\{|\}\[\]\|\\:;\',<\.>\?/][A-Za-z0-9~`!@#\$%\^&\*\(\)_\+-=\{|\}\[\]\|\\:;\',<\.>\?/ ]{1,39}" data-pattern-error="Capability does not meet format requirements" <?php if( $data['parameters']['submit'] == 'add_capability'){echo 'autofocus';} ?>>
+                          <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="col-sm-2">
+                          <button name="submit" value="add_capability" type="submit" class="btn btn-md btn-success">Add</button>
+                          <!-- <a href="<?php echo $this->baseUrl(); ?>add-resource/?add_capability=true" class="btn btn-md btn-success">Add</a> -->
+                        </div>
+                        <!-- </div> -->
+                    </div>
+
+                    <?php if (!empty($data['parameters']['resource_capabilities'])) : ?>
+
+                      <div class="form-group">
+                        <label for="resource_capabilities" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-10">
+                          <?php foreach($data['parameters']['resource_capabilities'] as $row): ?>
+                            <div class="col-sm-8">
+                              <p><?php echo $row ?></p>
+                              <input type="hidden" name="resource_capabilities[]" value="<?php echo $this->escape($row); ?>">
+                            </div>
+                            <div class="col-sm-1" >
+                             <button type="submit" name="delete_capability" value="<?php echo $this->escape($row); ?>" class="btn fa fa-trash-o"></button>
+                           </div>
+
+                          <?php endforeach; ?>
+                        </div>
+                      </div>
+                    <?php endif; ?>
+
+
+                    <!-- Change this to a button or input when using this as a form -->
+                    <div class="form-group">
+                    	<div class="col-sm-offset-2 col-sm-2">
+		                    <button name="submit" value="save_resource" type="submit" class="btn btn-lg btn-success ">Save</button>
+		                    <a href="<?php echo $this->baseUrl(); ?>add-resource" class="btn btn-lg btn-info">Reset</a>
+                      	</div>
+                    </div>
+                </fieldset>
+            </form>
+	    </div>
+	    <!-- /.col-lg-12 -->
+      <div class="col-lg-5">
+        <?php if ($data['parameters']['save_success'] == true) : ?>
+          <div class="alert alert-success">
+            Successfully Added New Resource!
+          </div>
+        <?php endif; ?>
+    	</div>
+	<!-- /.row -->
+	</div>
+</div>
+<!-- /.container-fluid -->

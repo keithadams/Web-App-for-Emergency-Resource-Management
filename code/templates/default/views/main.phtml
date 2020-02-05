@@ -1,0 +1,119 @@
+<div class="container-fluid">
+	<div class="row">
+        <div class="col-lg-12">
+        	<?php if (isset($data['user']) && !empty($data['user'])) : ?>
+				<h1 class="page-header">Main Menu Dashboard for <?php echo $this->escape($data['user']->name); ?></h1>
+
+				<?php if ($data['user']->user_type === 'company') : ?>
+					<p>Headquarters: <?php echo $this->escape($data['user']->headquarters); ?></p>
+				<?php elseif ($data['user']->user_type === 'government_agency') : ?>
+					<p>Jurisdiction: <?php echo $this->escape($data['user']->jurisdiction); ?>
+				<?php elseif ($data['user']->user_type === 'individual') : ?>
+					<p>Job Title: <?php echo $this->escape($data['user']->job_title); ?>, Date Hired: <?php echo $this->escape($this->carbon($data['user']->date_hired)->toFormattedDateString()); ?> <!--(this date was formatted with <a href="http://carbon.nesbot.com/docs/">PHP Carbon Library</a>)--></p>
+				<?php elseif ($data['user']->user_type === 'municipality') : ?>
+					<p>Population Size: <?php echo $this->escape($data['user']->population_size); ?>
+				<?php endif; ?>
+        	<?php else : ?>
+				<h1 class="page-header">Main Menu Dashboard</h1>
+        	<?php endif; ?>
+
+            <!--
+            <p>More examples can be found over in the <a target="_blank" href="<?php echo $this->baseUrl(); ?>assets/examples/">Examples</a> folder brought in from the SB Admin 2 template.</p>
+            -->
+        </div>
+        <!-- /.col-lg-12 -->
+
+    </div>
+	<!-- /.row -->
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-hourglass-half fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge"><?php echo $data['inUseCount']; ?></div>
+                            <div>Resources in Use</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="<?php echo $this->baseUrl().'resource-status'; ?>#resources-in-use">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge"><?php echo $data['requestedByMeCount']; ?></div>
+                            <div>My Pending Requests</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="<?php echo $this->baseUrl().'resource-status'; ?>#my-pending-requests">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <div class="huge"><?php echo $data['receivedByMeCount']; ?></div>
+                            <div>Resource Requests Pending My Approval</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="<?php echo $this->baseUrl().'resource-status'; ?>#requests-pending-approval">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-support fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge"><?php echo $data['repairsScheduledCount']; ?></div>
+                            <div>Scheduled Repairs</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="<?php echo $this->baseUrl().'resource-status'; ?>#scheduled-repairs">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->

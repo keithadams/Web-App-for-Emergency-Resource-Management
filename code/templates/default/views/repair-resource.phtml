@@ -1,0 +1,43 @@
+<div class="container-fluid">
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"><?php echo $data['subtitle']; ?></h1>
+        </div>
+        <!-- /.col-lg-12 -->
+
+		<div class="row">
+			<div class="col-lg-6">
+				<form class="form-horizontal" action="<?php echo $this->baseUrl(); ?>repair-resource" method="POST" role="form" data-toggle="validator">
+	                <fieldset>
+	                    <div class="form-group">
+                    		<label for="duration" class="col-sm-4 control-label">
+                    			<?php if ($data['resourceStatus'] === 'in-use') : ?>
+                    				Will be in Repair for N days after return:
+                    			<?php elseif ($data['resourceStatus'] === 'available') : ?>
+									Will be in Repair for next N days:
+                    			<?php else : ?>
+                    				Expected Return Date
+								<?php endif; ?>
+                    			</label>
+    						<div class="col-sm-8">
+    							<input type="hidden" name="resource_id" value="<?php echo $data['resourceId']; ?>">
+                                <input type="hidden" name="resource_status" value="<?php echo $data['resourceStatus']; ?>">
+                                <input type="hidden" name="redirect" value="<?php echo $data['redirectUrl']; ?>">
+		                        <input required class="form-control" placeholder="Duration" name="duration" type="number" min="1" max="365" value="" pattern="[0-9]{1,3}" data-pattern-error="Please enter a valid number" autofocus>
+          						<div class="help-block with-errors"></div>
+          					</div>
+	                    </div>
+
+	                    <div class="form-group">
+                    	<div class="col-sm-offset-4 col-sm-8">
+		                    <button type="submit" class="btn btn-lg btn-success ">Schedule/Start Repair</button>
+                    		<?php //echo $this->getCsrf(); ?>
+                    	</div>
+                    </div>
+	                </fieldset>
+	            </form>
+	        </div>
+        </div>
+
+
+</div>

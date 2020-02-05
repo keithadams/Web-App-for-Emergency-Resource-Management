@@ -1,0 +1,22 @@
+<div class="container-fluid">
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Reject Request</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+<div class="col-lg-12">
+            <p>Rejecting Resource Request <?php echo $data['resourceId']; ?> for Incident <?php echo $data['incidentId']; ?> </p>
+        </div>
+
+        <script type="text/javascript" language="JavaScript">
+        function redirect()
+            {
+
+                window.location = './resource-status'
+
+            }
+        setTimeout(redirect, 2000);     
+             </script>
+
+
+</div>   

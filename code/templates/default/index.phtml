@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<?php if (isset($data['subtitle'])) : ?>
+	<title><?php echo $data['subtitle']; ?> | Emergency Resource Management System</title>
+	<?php else : ?>
+	<title>Emergency Resource Management System</title>
+	<?php endif; ?>
+
+
+    <?php include dirname(__FILE__) . '/css.phtml'; ?>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <?php include dirname(__FILE__) . '/menu.phtml'; ?>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+        	<?php if (isset($data['view'])) : ?>
+				<?php include dirname(__FILE__) . '/views/' . strtolower($data['view']) . '.phtml'; ?>
+        	<?php endif; ?>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <?php include dirname(__FILE__) . '/js.phtml'; ?>
+
+</body>
+</html>
